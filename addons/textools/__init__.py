@@ -23,6 +23,7 @@ if "bpy" in locals():
 	imp.reload(utilities_texel)
 	imp.reload(utilities_ui)
 	imp.reload(utilities_uv)
+	imp.reload(utilities_core)
 	
 	imp.reload(op_align)
 	imp.reload(op_bake)

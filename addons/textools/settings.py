@@ -15,3 +15,6 @@ bake_mode = 'UNDEFINED'
 bake_render_engine = ''
 bake_objects_hide_render = [] 
 sets = []
+
+checker_map_modes = ['UV_GRID','COLOR_GRID']
+checker_map_index = 0;

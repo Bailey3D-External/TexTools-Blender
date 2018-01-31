@@ -6,6 +6,8 @@ from collections import defaultdict
 from math import pi
 
 from . import utilities_texel
+from . import settings
+from . import utilities_core
 
 
 class op(bpy.types.Operator):
@@ -124,16 +126,20 @@ def apply_faces_image(obj, image):
 		tree.nodes.active = node
 		node.image = image
 
-
-
 def get_image(name, size_x, size_y):
+
+	settings.checker_map_index = utilities_core.clamp_loop_list(
+		settings.checker_map_index + 1, settings.checker_map_modes)
+	
 	# Image already exists?
 	if name in bpy.data.images:
-		return bpy.data.images[name];
+		image = bpy.data.images[name]
+		image.generated_type = settings.checker_map_modes[settings.checker_map_index]
+		return image
 
 	# Create new image instead
 	image = bpy.data.images.new(name, width=size_x, height=size_y)
-	image.generated_type = 'UV_GRID' #COLOR_GRID
+	image.generated_type = settings.checker_map_modes[settings.checker_map_index]
 	image.generated_width = int(size_x)
 	image.generated_height = int(size_y)
 
